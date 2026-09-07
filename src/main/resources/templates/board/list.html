@@ -42,6 +42,7 @@
 			<div class="card-body p-0">
 				<div class="table-responsive">
 					<table class="table table-hover align-middle mb-0">
+						<caption class="visually-hidden">자유 게시판 게시글 목록</caption>
 						<thead class="table-light">
 							<tr>
 								<th class="ps-4" scope="col">번호</th>
@@ -168,6 +169,10 @@
 				const posts = await request('/api/board');
 				const rows = document.querySelector('#boardRows');
 				document.querySelector('#emptyState').classList.toggle('d-none', posts.length > 0);
+				if (posts.length === 0) {
+					rows.innerHTML = `<tr><td colspan="5" class="text-center text-secondary py-5">등록된 게시글이 없습니다.</td></tr>`;
+					return;
+				}
 				rows.innerHTML = posts.map(post => `
 					<tr>
 						<td class="ps-4 text-secondary">${post.id}</td>

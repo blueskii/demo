@@ -10,13 +10,13 @@
 	</insert>
 
 	<select id="findAll" resultType="com.example.demo.entity.BoardPost">
-		SELECT id, title, content, author, created_at, updated_at
+		SELECT id, title, content, author, created_at AS createdAt, updated_at AS updatedAt
 		FROM board_post
 		ORDER BY id DESC
 	</select>
 
 	<select id="findById" parameterType="long" resultType="com.example.demo.entity.BoardPost">
-		SELECT id, title, content, author, created_at, updated_at
+		SELECT id, title, content, author, created_at AS createdAt, updated_at AS updatedAt
 		FROM board_post
 		WHERE id = #{id}
 	</select>
