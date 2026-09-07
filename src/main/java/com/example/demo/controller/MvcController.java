@@ -15,4 +15,9 @@ public class MvcController {
 	public String notice() {
 		return "notice/list";
 	}
+
+	@GetMapping("/board")
+	public String board() {
+		return "board/list";
+	}
 }
