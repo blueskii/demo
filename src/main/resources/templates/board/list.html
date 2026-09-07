@@ -158,8 +158,13 @@
 		async function request(url, options) {
 			const response = await fetch(url, options);
 			if (!response.ok) {
-				const error = await response.json().catch(() => ({}));
-				throw new Error(error.message || '요청을 처리하지 못했습니다.');
+				const body = await response.text();
+				const contentType = response.headers.get('content-type') || '';
+				if (contentType.includes('application/json')) {
+					const error = JSON.parse(body || '{}');
+					throw new Error(error.message || '요청을 처리하지 못했습니다.');
+				}
+				throw new Error(body || '요청을 처리하지 못했습니다.');
 			}
 			if (response.status === 204) {
 				return null;

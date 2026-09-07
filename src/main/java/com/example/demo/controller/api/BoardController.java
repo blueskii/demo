@@ -34,7 +34,7 @@ public class BoardController {
 
 	@PostMapping
 	public ResponseEntity<BoardResponse> create(@Valid @RequestBody BoardCreateRequest request) {
-		BoardPost created = boardService.create(toEntity(request));
+		BoardPost created = boardService.create(toEntity(request.getTitle(), request.getContent(), request.getAuthor()));
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}")
 			.buildAndExpand(created.getId())
@@ -55,7 +55,7 @@ public class BoardController {
 	@PutMapping("/{id}")
 	public BoardResponse update(@PathVariable("id") Long id,
 			@Valid @RequestBody BoardUpdateRequest request) {
-		return toResponse(boardService.update(id, toEntity(request)));
+		return toResponse(boardService.update(id, toEntity(request.getTitle(), request.getContent(), request.getAuthor())));
 	}
 
 	@DeleteMapping("/{id}")
@@ -64,19 +64,11 @@ public class BoardController {
 		return ResponseEntity.noContent().build();
 	}
 
-	private BoardPost toEntity(BoardCreateRequest request) {
+	private BoardPost toEntity(String title, String content, String author) {
 		BoardPost boardPost = new BoardPost();
-		boardPost.setTitle(request.getTitle());
-		boardPost.setContent(request.getContent());
-		boardPost.setAuthor(request.getAuthor());
-		return boardPost;
-	}
-
-	private BoardPost toEntity(BoardUpdateRequest request) {
-		BoardPost boardPost = new BoardPost();
-		boardPost.setTitle(request.getTitle());
-		boardPost.setContent(request.getContent());
-		boardPost.setAuthor(request.getAuthor());
+		boardPost.setTitle(title);
+		boardPost.setContent(content);
+		boardPost.setAuthor(author);
 		return boardPost;
 	}
 
