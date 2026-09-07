@@ -87,17 +87,20 @@ class BoardIntegrationTests {
 				.content("""
 					{"title":"","content":"","author":""}
 					"""))
-			.andExpect(status().isBadRequest());
+			.andExpect(status().isBadRequest())
+			.andExpect(jsonPath("$.message").value("must not be blank"));
 
 		mockMvc.perform(get("/api/board/999999"))
 			.andExpect(status().isNotFound());
 
-		String body = """
-			{"title":"중복 제목","content":"내용","author":"작성자"}
-			""";
-		mockMvc.perform(post("/api/board").contentType(MediaType.APPLICATION_JSON).content(body))
-			.andExpect(status().isCreated());
-		mockMvc.perform(post("/api/board").contentType(MediaType.APPLICATION_JSON).content(body))
-			.andExpect(status().isConflict());
+		mockMvc.perform(put("/api/board/999999")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+					{"title":"수정","content":"내용","author":"작성자"}
+					"""))
+			.andExpect(status().isNotFound());
+
+		mockMvc.perform(delete("/api/board/999999"))
+			.andExpect(status().isNotFound());
 	}
 }

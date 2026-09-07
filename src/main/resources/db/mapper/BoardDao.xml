@@ -21,15 +21,6 @@
 		WHERE id = #{id}
 	</select>
 
-	<select id="existsByTitleExcludingId" resultType="boolean">
-		SELECT CASE WHEN COUNT(*) > 0 THEN TRUE ELSE FALSE END
-		FROM board_post
-		WHERE title = #{title}
-		<if test="id != null">
-			AND id != #{id}
-		</if>
-	</select>
-
 	<update id="update" parameterType="com.example.demo.entity.BoardPost">
 		UPDATE board_post
 		SET title = #{title},

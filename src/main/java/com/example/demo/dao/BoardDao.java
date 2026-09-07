@@ -3,7 +3,6 @@ package com.example.demo.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.entity.BoardPost;
 
@@ -15,8 +14,6 @@ public interface BoardDao {
 	List<BoardPost> findAll();
 
 	BoardPost findById(Long id);
-
-	boolean existsByTitleExcludingId(@Param("title") String title, @Param("id") Long id);
 
 	int update(BoardPost boardPost);
 
