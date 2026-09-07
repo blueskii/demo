@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.demo.dto.ErrorResponse;
+import com.example.demo.exception.BoardNotFoundException;
+import com.example.demo.exception.DuplicateBoardTitleException;
 import com.example.demo.exception.DuplicateNoticeTitleException;
 import com.example.demo.exception.NoticeNotFoundException;
 
@@ -26,8 +28,18 @@ public class ApiExceptionHandler {
 		return response(HttpStatus.NOT_FOUND, exception.getMessage());
 	}
 
+	@ExceptionHandler(BoardNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleBoardNotFound(BoardNotFoundException exception) {
+		return response(HttpStatus.NOT_FOUND, exception.getMessage());
+	}
+
 	@ExceptionHandler(DuplicateNoticeTitleException.class)
 	public ResponseEntity<ErrorResponse> handleConflict(DuplicateNoticeTitleException exception) {
+		return response(HttpStatus.CONFLICT, exception.getMessage());
+	}
+
+	@ExceptionHandler(DuplicateBoardTitleException.class)
+	public ResponseEntity<ErrorResponse> handleBoardConflict(DuplicateBoardTitleException exception) {
 		return response(HttpStatus.CONFLICT, exception.getMessage());
 	}
 
