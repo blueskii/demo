@@ -31,9 +31,14 @@
 						<p class="eyebrow mb-3">SPRING BOOT WORKSPACE</p>
 						<h1 class="hero-title mb-4">작은 아이디어를<br><span>실행 가능한 서비스로.</span></h1>
 						<p class="hero-copy mb-4">애플리케이션이 준비되었습니다. 이제 필요한 기능을 하나씩 연결해 보세요.</p>
-						<a class="btn btn-dark btn-lg d-inline-flex align-items-center gap-2" href="#workspace">
-							시작하기 <i class="bi bi-arrow-down" aria-hidden="true"></i>
-						</a>
+						<div class="d-flex flex-wrap gap-2">
+							<a class="btn btn-dark btn-lg d-inline-flex align-items-center gap-2" th:href="@{/notice}">
+								공지사항 보기 <i class="bi bi-arrow-right" aria-hidden="true"></i>
+							</a>
+							<a class="btn btn-outline-dark btn-lg d-inline-flex align-items-center gap-2" href="#workspace">
+								둘러보기 <i class="bi bi-arrow-down" aria-hidden="true"></i>
+							</a>
+						</div>
 					</div>
 					<div class="col-lg-5">
 						<div class="terminal-panel" aria-label="애플리케이션 상태">
