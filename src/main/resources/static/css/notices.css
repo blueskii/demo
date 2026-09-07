@@ -1,0 +1,251 @@
+:root {
+	--ink: #18221c;
+	--muted: #68736b;
+	--paper: #f5f6f0;
+	--surface: #ffffff;
+	--green: #2e6b4b;
+	--green-soft: #e6f0e9;
+	--line: #dce1d8;
+}
+
+body {
+	margin: 0;
+	background: var(--surface);
+	color: var(--ink);
+	font-family: "Manrope", "Noto Sans KR", sans-serif;
+}
+
+.site-header {
+	border-bottom: 1px solid var(--line);
+	background: rgba(255, 255, 255, 0.96);
+}
+
+.brand {
+	color: var(--ink);
+	font-size: 1.05rem;
+	font-weight: 700;
+}
+
+.brand-mark {
+	display: grid;
+	width: 2rem;
+	height: 2rem;
+	place-items: center;
+	border-radius: 6px;
+	background: var(--ink);
+	color: white;
+}
+
+.nav-link {
+	position: relative;
+	padding: 0.5rem 0;
+	color: var(--muted);
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link.active {
+	color: var(--ink);
+}
+
+.nav-link.active::after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	background: var(--green);
+	content: "";
+}
+
+.page-intro {
+	border-bottom: 1px solid var(--line);
+	background-color: var(--paper);
+	background-image: linear-gradient(rgba(220, 225, 216, 0.65) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 225, 216, 0.65) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+.eyebrow {
+	color: var(--green);
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.12rem;
+}
+
+.page-intro h1 {
+	font-size: clamp(2.2rem, 5vw, 3.4rem);
+	font-weight: 700;
+	letter-spacing: -0.08rem;
+}
+
+.intro-copy,
+.notice-count,
+.site-footer {
+	color: var(--muted);
+}
+
+.board-section {
+	padding-bottom: 6rem;
+	padding-top: 4rem;
+}
+
+.notice-count {
+	font-size: 0.9rem;
+}
+
+.notice-count strong {
+	color: var(--green);
+}
+
+.search-form {
+	width: min(100%, 22rem);
+}
+
+.search-form .form-control {
+	border-color: var(--line);
+	border-radius: 6px 0 0 6px;
+	font-size: 0.88rem;
+}
+
+.search-form .form-control:focus {
+	border-color: var(--green);
+	box-shadow: 0 0 0 0.2rem rgba(46, 107, 75, 0.12);
+}
+
+.search-form .btn {
+	width: 3rem;
+	border-radius: 0 6px 6px 0;
+}
+
+.board-table-wrap {
+	border-top: 2px solid var(--ink);
+}
+
+.board-table {
+	min-width: 44rem;
+}
+
+.board-table th {
+	padding: 1rem;
+	border-bottom-color: var(--line);
+	background: #fafbf8;
+	color: var(--muted);
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+.board-table td {
+	padding: 1.2rem 1rem;
+	border-bottom-color: var(--line);
+	color: var(--muted);
+	font-size: 0.86rem;
+	text-align: center;
+}
+
+.board-table td:nth-child(2) {
+	text-align: left;
+}
+
+.board-table a {
+	color: var(--ink);
+	font-size: 0.94rem;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.board-table a:hover {
+	color: var(--green);
+	text-decoration: underline;
+	text-underline-offset: 0.25rem;
+}
+
+.board-table .pinned td {
+	background: #fcfdfb;
+}
+
+.number-cell {
+	width: 6.5rem;
+}
+
+.date-cell {
+	width: 9.5rem;
+}
+
+.views-cell {
+	width: 6.5rem;
+}
+
+.pin-badge {
+	display: inline-block;
+	padding: 0.25rem 0.55rem;
+	border-radius: 999px;
+	background: var(--green-soft);
+	color: var(--green);
+	font-size: 0.7rem;
+	font-weight: 700;
+}
+
+.new-badge {
+	display: inline-grid;
+	width: 1.15rem;
+	height: 1.15rem;
+	margin-left: 0.35rem;
+	place-items: center;
+	border-radius: 50%;
+	background: var(--green);
+	color: white;
+	font-size: 0.62rem;
+	font-weight: 700;
+	vertical-align: 0.1rem;
+}
+
+.pagination {
+	--bs-pagination-color: var(--muted);
+	--bs-pagination-hover-color: var(--green);
+	--bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(46, 107, 75, 0.12);
+	--bs-pagination-active-bg: var(--ink);
+	--bs-pagination-active-border-color: var(--ink);
+	--bs-pagination-disabled-color: #adb5af;
+	gap: 0.4rem;
+}
+
+.page-link {
+	display: grid;
+	width: 2.4rem;
+	height: 2.4rem;
+	place-items: center;
+	padding: 0;
+	border-color: var(--line);
+	border-radius: 6px !important;
+	font-size: 0.82rem;
+}
+
+.site-footer {
+	border-top: 1px solid var(--line);
+	background: var(--paper);
+	font-size: 0.8rem;
+}
+
+.footer-brand {
+	color: var(--ink);
+	font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+	.board-section {
+		padding-bottom: 4rem;
+		padding-top: 3rem;
+	}
+
+	.search-form {
+		width: 100%;
+	}
+
+	.site-footer .container {
+		align-items: flex-start !important;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+}
