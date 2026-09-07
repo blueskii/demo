@@ -161,7 +161,14 @@
 				const error = await response.json().catch(() => ({}));
 				throw new Error(error.message || '요청을 처리하지 못했습니다.');
 			}
-			return response.status === 204 ? null : response.json();
+			if (response.status === 204) {
+				return null;
+			}
+			const contentType = response.headers.get('content-type') || '';
+			if (!contentType.includes('application/json')) {
+				return null;
+			}
+			return response.json();
 		}
 
 		async function loadBoards() {
@@ -169,11 +176,7 @@
 				const posts = await request('/api/board');
 				const rows = document.querySelector('#boardRows');
 				document.querySelector('#emptyState').classList.toggle('d-none', posts.length > 0);
-				if (posts.length === 0) {
-					rows.innerHTML = `<tr><td colspan="5" class="text-center text-secondary py-5">등록된 게시글이 없습니다.</td></tr>`;
-					return;
-				}
-				rows.innerHTML = posts.map(post => `
+				rows.innerHTML = posts.length === 0 ? '' : posts.map(post => `
 					<tr>
 						<td class="ps-4 text-secondary">${post.id}</td>
 						<td><button class="btn btn-link text-dark text-decoration-none p-0 post-title"

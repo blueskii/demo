@@ -93,6 +93,14 @@ class BoardIntegrationTests {
 		mockMvc.perform(get("/api/board/999999"))
 			.andExpect(status().isNotFound());
 
+		mockMvc.perform(post("/api/board")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("""
+					{"title":"제목"
+					"""))
+			.andExpect(status().isBadRequest())
+			.andExpect(jsonPath("$.message").value("요청 값을 확인해 주세요."));
+
 		mockMvc.perform(put("/api/board/999999")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("""

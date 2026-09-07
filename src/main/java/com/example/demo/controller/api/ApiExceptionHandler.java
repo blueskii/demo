@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,10 +22,6 @@ public class ApiExceptionHandler {
 			if (validationException.getBindingResult().getFieldError() != null) {
 				return response(HttpStatus.BAD_REQUEST,
 					validationException.getBindingResult().getFieldError().getDefaultMessage());
-			}
-			ObjectError globalError = validationException.getBindingResult().getGlobalError();
-			if (globalError != null) {
-				return response(HttpStatus.BAD_REQUEST, globalError.getDefaultMessage());
 			}
 			return response(HttpStatus.BAD_REQUEST, "요청 값을 확인해 주세요.");
 		}
