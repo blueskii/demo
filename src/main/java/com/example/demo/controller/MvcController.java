@@ -11,11 +11,6 @@ public class MvcController {
 		return "home";
 	}
 
-	@GetMapping("/notice")
-	public String notice() {
-		return "notice/list";
-	}
-
 	@GetMapping("/board")
 	public String board() {
 		return "board/list";

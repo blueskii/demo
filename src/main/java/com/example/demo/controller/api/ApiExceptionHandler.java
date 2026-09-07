@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.demo.dto.ErrorResponse;
 import com.example.demo.exception.BoardNotFoundException;
-import com.example.demo.exception.DuplicateNoticeTitleException;
-import com.example.demo.exception.NoticeNotFoundException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
@@ -28,19 +26,9 @@ public class ApiExceptionHandler {
 		return response(HttpStatus.BAD_REQUEST, "요청 값을 확인해 주세요.");
 	}
 
-	@ExceptionHandler(NoticeNotFoundException.class)
-	public ResponseEntity<ErrorResponse> handleNotFound(NoticeNotFoundException exception) {
-		return response(HttpStatus.NOT_FOUND, exception.getMessage());
-	}
-
 	@ExceptionHandler(BoardNotFoundException.class)
 	public ResponseEntity<ErrorResponse> handleBoardNotFound(BoardNotFoundException exception) {
 		return response(HttpStatus.NOT_FOUND, exception.getMessage());
-	}
-
-	@ExceptionHandler(DuplicateNoticeTitleException.class)
-	public ResponseEntity<ErrorResponse> handleConflict(DuplicateNoticeTitleException exception) {
-		return response(HttpStatus.CONFLICT, exception.getMessage());
 	}
 
 	private ResponseEntity<ErrorResponse> response(HttpStatus status, String message) {
