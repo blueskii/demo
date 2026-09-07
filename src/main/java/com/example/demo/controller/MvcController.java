@@ -10,4 +10,9 @@ public class MvcController {
 	public String home() {
 		return "home";
 	}
+
+	@GetMapping("/notices")
+	public String notices() {
+		return "notices/list";
+	}
 }
