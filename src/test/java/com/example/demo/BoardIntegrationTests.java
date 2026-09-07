@@ -45,7 +45,7 @@ class BoardIntegrationTests {
 
 	@Test
 	void supportsCrudLifecycle() throws Exception {
-		String createdBody = mockMvc.perform(post("/api/board")
+		String location = mockMvc.perform(post("/api/board")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("""
 					{"title":"첫 인사","content":"반갑습니다.","author":"홍길동"}
@@ -53,9 +53,9 @@ class BoardIntegrationTests {
 			.andExpect(status().isCreated())
 			.andExpect(header().string("Location", org.hamcrest.Matchers.matchesPattern(".*/api/board/\\d+")))
 			.andExpect(jsonPath("$.title").value("첫 인사"))
-			.andReturn().getResponse().getContentAsString();
+			.andReturn().getResponse().getHeader("Location");
 
-		Long id = Long.valueOf(createdBody.replaceAll(".*\"id\":(\\d+).*", "$1"));
+		Long id = Long.valueOf(location.substring(location.lastIndexOf('/') + 1));
 
 		mockMvc.perform(get("/api/board"))
 			.andExpect(status().isOk())
